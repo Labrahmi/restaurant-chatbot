@@ -1,5 +1,5 @@
-import { Application, oakCors } from "./deps.ts";
-import { router } from "./routes.ts"; // Import the router
+import { Application, oakCors } from "@deps"
+import { router } from "./routes/routes.ts"
 
 // Create your Deno application
 const app = new Application();

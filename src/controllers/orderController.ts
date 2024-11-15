@@ -1,5 +1,5 @@
 // controllers/orderController.ts
-import { Context } from "../deps.ts";
+import { Context } from "@deps";
 
 export const handleOrder = async (ctx: Context) => {
   const order = await ctx.request.body().value;

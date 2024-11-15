@@ -1,5 +1,5 @@
 // controllers/reservationController.ts
-import { Context } from "../deps.ts";
+import { Context } from "@deps";
 
 export const handleReservation = async (ctx: Context) => {
   const { date, time, guests } = await ctx.request.body().value;

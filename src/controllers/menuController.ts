@@ -1,5 +1,5 @@
 // controllers/menuController.ts
-import { Context } from "../deps.ts";
+import { Context } from "@deps"
 
 const menu = [
   { id: 1, name: "Margherita Pizza", price: 10 },
