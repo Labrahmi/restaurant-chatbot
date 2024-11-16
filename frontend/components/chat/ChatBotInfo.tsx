@@ -28,6 +28,7 @@ function ChatBotInfo() {
           <code>/hello</code>
           <code>/menu</code>
           <code>/l3yoni</code>
+          <code>/random</code>
         </ul>
       </div>
     </div>
