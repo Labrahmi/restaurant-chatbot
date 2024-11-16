@@ -2,10 +2,36 @@
 
 import { SendHorizontal } from "lucide-react";
 import { useState, useEffect, useRef } from "react";
-import { Message } from "@/lib/types";
+import { Message, MenuItem } from "@/lib/types";
 import { toast } from "sonner";
+import axios from "axios";
+
+const generateMessage = (menuItems: MenuItem[], inputValue: string) => {
+  if (inputValue.includes("kbira sghira")) {
+    return "❤️";
+  } else if (inputValue.includes("love")) {
+    return "❤️";
+  } else if (inputValue.includes("sba7 lkhir")) {
+    return "ma sba7 lkhir ma ta l3ba";
+  } else if (inputValue.includes("hello")) {
+    return "Fen asat, chno baghi?";
+  } else if (inputValue.includes("menu")) {
+    return (
+      "Menu items are:\n" +
+      menuItems.map((item) => `∙ ${item.name}: ${item.price}`).join("\n")
+    );
+  } else if (inputValue.includes("l3yoni")) {
+    return "L3yoni ra m**d asat, rah AI li kteb hadchi";
+  } else {
+    return "image";
+  }
+};
 
 function ChatMessageInput({ setMessages }: { setMessages: Function }) {
+  let [inputValue, setInputValue] = useState("");
+  let [isUserTurn, setIsUserTurn] = useState(true);
+  let [menuItems, setMenuItems] = useState<MenuItem[]>([]);
+
   const inputRef = useRef<HTMLInputElement>(null);
   const BotReply = (isUserTurn: boolean, setUsersTurn: Function) => {
     setUsersTurn(false);
@@ -21,12 +47,14 @@ function ChatMessageInput({ setMessages }: { setMessages: Function }) {
         },
       },
     ]);
+
+    const AiGenretedMessage = generateMessage(menuItems, inputValue);
     setTimeout(() => {
       setMessages((messages: Message[]) => [
         ...messages.slice(0, -1),
         {
           id: String(messages.length),
-          text: "Sure! What type of cuisine are you interested in?",
+          text: AiGenretedMessage,
           user: {
             id: "0",
             name: "Restaurant bot",
@@ -38,8 +66,14 @@ function ChatMessageInput({ setMessages }: { setMessages: Function }) {
     }, 1500);
   };
 
-  let [inputValue, setInputValue] = useState("");
-  let [isUserTurn, setIsUserTurn] = useState(true);
+  useEffect(() => {
+    axios
+      .get("https://18ks6qpp-8000.uks1.devtunnels.ms/menu")
+      .then((res) => setMenuItems(res.data))
+      .catch((error) => {
+        console.log("Error fetching menu items:", error);
+      });
+  }, []);
 
   useEffect(() => {
     if (isUserTurn) {
@@ -47,7 +81,7 @@ function ChatMessageInput({ setMessages }: { setMessages: Function }) {
     }
   }, [isUserTurn]);
 
-  const handleSendMessage = () => {
+  const handleSendMessage = async () => {
     if (
       !inputValue ||
       inputValue.trim() === "" ||
@@ -109,6 +143,5 @@ function ChatMessageInput({ setMessages }: { setMessages: Function }) {
     </div>
   );
 }
-
 
 export { ChatMessageInput };

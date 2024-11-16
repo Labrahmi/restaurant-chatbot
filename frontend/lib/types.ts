@@ -1,6 +1,14 @@
 // lib/types.ts
 
-export interface Message {
+interface MenuItem {
+  id: string;
+  name: string;
+  description: string;
+  price: number;
+  category: string;
+}
+
+interface Message {
   id: string;
   text: string;
   user: {
@@ -9,3 +17,5 @@ export interface Message {
     avatar: string;
   };
 }
+
+export type { MenuItem, Message };

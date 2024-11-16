@@ -28,12 +28,18 @@ function ChatMessageCore({
             })}
           >
             <Avatar className="size-8">
-              <AvatarImage src="https://github.com/shadcn.png" />
+              <AvatarImage
+                src={clsx(
+                  message.user.id === "0"
+                    ? "/botto.png"
+                    : "https://github.com/shadcn.png"
+                )}
+              />
               <AvatarFallback>CN</AvatarFallback>
             </Avatar>
             <div
               className={clsx(
-                "p-2 rounded-lg border border-zinc-800 break-all",
+                "p-2 rounded-lg border border-zinc-800 break-all whitespace-pre-wrap",
                 {
                   "bg-zinc-800": message.user.id === "0",
                   "animate-pulse w-64 h-full text-center":
@@ -41,7 +47,15 @@ function ChatMessageCore({
                 }
               )}
             >
-              {message.text}
+              {message.text === "image" && message.user.id === "0" ? (
+                <img
+                  className="size-64 rounded"
+                  src={`/memes/${Math.floor(Math.random() * 64) + 1}.jpeg`}
+                  alt="Image"
+                />
+              ) : (
+                message.text
+              )}
             </div>
           </div>
         </div>
