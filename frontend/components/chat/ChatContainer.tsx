@@ -17,7 +17,7 @@ function ChatContainer() {
   };
   return (
     <div className="h-full flex flex-col justify-between w-[40rem] bg-black/50 border border-zinc-800 rounded overflow-x-auto select-none">
-      <ChatBotInfo />
+      <ChatBotInfo messages={messages} setMessages={setMessages} />
       <ChatMessageCore
         messages={messages}
         messagesEndRef={messagesEndRef}

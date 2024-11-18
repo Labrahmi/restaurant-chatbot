@@ -1,17 +1,63 @@
 "use client";
 
-import { SendHorizontal } from "lucide-react";
+import {
+  SendHorizontal,
+  Accessibility,
+  MessageSquareOff,
+  X,
+  EllipsisVertical,
+} from "lucide-react";
+
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { useToast } from "@/hooks/use-toast";
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover";
+import { Button } from "@/components/ui/button";
 import { toast } from "sonner";
+import { useState, useEffect, useRef } from "react";
+import { useToast } from "@/hooks/use-toast";
 import { Toaster } from "@/components/ui/sonner";
 
-import clsx from "clsx";
-import { useState, useEffect, useRef } from "react";
+import { Message } from "@/lib/types";
 
-function ChatBotInfo() {
+import clsx from "clsx";
+
+function ChatBotInfo({
+  messages,
+  setMessages,
+}: {
+  messages: Message[];
+  setMessages: Function;
+}) {
   return (
-    <div className="w-full flex gap-2 flex-col items-center justify-center p-8 select-none">
+    <div className="w-full flex gap-2 flex-col items-center justify-center select-none border-b border-b-zinc-800">
+      <div className="w-full flex justify-end p-2 py-4">
+        <Popover>
+          <PopoverTrigger className="flex gap-1 items-center text-zinc-500 text-sm font-light">
+            <EllipsisVertical className="w-4 h-4" />
+          </PopoverTrigger>
+          <PopoverContent className="bg-zinc-950 *:bg-zinc-950 border-zinc-800 text-zinc-500 p-2 w-fit">
+            <Button
+              onClick={() => {
+                setMessages([]);
+                toast("Clear", {
+                  description: "Messages cleared.",
+                  style: {
+                    background: "#000000",
+                    color: "#fff",
+                    border: "1px solid #444",
+                  },
+                });
+              }}
+              className="hover:bg-zinc-800 w-full flex text-left justify-start p-2"
+            >
+              <div className="">Clear messages</div>
+            </Button>
+          </PopoverContent>
+        </Popover>
+      </div>
       <Avatar className="size-32">
         <AvatarImage src="/botto.png" />
         <AvatarFallback>CN</AvatarFallback>
@@ -22,7 +68,8 @@ function ChatBotInfo() {
           A7sen bot, makay3rf ydir walo, wlkn bot
         </p>
       </div>
-      <div className="text-sm text-zinc-500 self-start">
+
+      <div className="text-sm text-zinc-500 self-start p-4">
         <code>Commands:</code>
         <ul className="list-disc flex flex-col gap-1 list-inside text-xs select-text selection:text-black selection:bg-zinc-600">
           <code>/hello</code>

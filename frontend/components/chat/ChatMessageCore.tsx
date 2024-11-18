@@ -47,15 +47,7 @@ function ChatMessageCore({
                 }
               )}
             >
-              {message.text === "image" && message.user.id === "0" ? (
-                <img
-                  className="size-64 rounded"
-                  src={`/memes/${Math.floor(Math.random() * 64) + 1}.jpeg`}
-                  alt="Image"
-                />
-              ) : (
-                message.text
-              )}
+              {message.text}
             </div>
           </div>
         </div>

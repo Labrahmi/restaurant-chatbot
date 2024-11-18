@@ -6,40 +6,45 @@ import { Message, MenuItem } from "@/lib/types";
 import { toast } from "sonner";
 import axios from "axios";
 
-const generateMessage = (menuItems: MenuItem[], inputValue: string) => {
-  if (inputValue.includes("kbira sghira")) {
-    return "❤️";
-  } else if (inputValue.includes("love")) {
-    return "❤️";
-  } else if (inputValue.includes("sba7 lkhir")) {
-    return "ma sba7 lkhir ma ta l3ba";
-  } else if (inputValue.includes("hello")) {
-    return "Fen asat, chno baghi?";
-  } else if (inputValue.includes("menu")) {
-    return (
-      "Menu items are:\n" +
-      menuItems.map((item) => `∙ ${item.name}: ${item.price}`).join("\n")
-    );
-  } else if (inputValue.includes("l3yoni")) {
-    return "L3yoni ra m**d asat, rah AI li kteb hadchi";
-  } else {
-    return "image";
+const BACKEND_URL = "http://localhost:8000";
+
+const generateMessage = async (
+  inputValue: string,
+  setUsersTurn: Function
+): Promise<string> => {
+  setUsersTurn(false);
+  try {
+    const response = await axios.post(`${BACKEND_URL}/api/chat`, {
+      message: inputValue,
+    });
+    setUsersTurn(true);
+    return response.data.message;
+  } catch (error) {
+    setUsersTurn(true);
+    toast("Error", {
+      description: `Error generating message: ${error}`,
+      style: {
+        background: "#000000",
+        color: "#fff",
+        border: "1px solid #444",
+      },
+    });
+    return "🤒";
   }
 };
 
 function ChatMessageInput({ setMessages }: { setMessages: Function }) {
   let [inputValue, setInputValue] = useState("");
   let [isUserTurn, setIsUserTurn] = useState(true);
-  let [menuItems, setMenuItems] = useState<MenuItem[]>([]);
 
   const inputRef = useRef<HTMLInputElement>(null);
-  const BotReply = (isUserTurn: boolean, setUsersTurn: Function) => {
-    setUsersTurn(false);
+  const BotReply = async (isUserTurn: boolean, setUsersTurn: Function) => {
+    const ResponseFromBot = await generateMessage(inputValue, setUsersTurn);
     setMessages((messages: Message[]) => [
       ...messages,
       {
         id: String(messages.length + 1),
-        text: "",
+        text: ResponseFromBot,
         user: {
           id: "0",
           name: "Restaurant bot",
@@ -47,33 +52,7 @@ function ChatMessageInput({ setMessages }: { setMessages: Function }) {
         },
       },
     ]);
-
-    const AiGenretedMessage = generateMessage(menuItems, inputValue);
-    setTimeout(() => {
-      setMessages((messages: Message[]) => [
-        ...messages.slice(0, -1),
-        {
-          id: String(messages.length),
-          text: AiGenretedMessage,
-          user: {
-            id: "0",
-            name: "Restaurant bot",
-            avatar: "",
-          },
-        },
-      ]);
-      setUsersTurn(true);
-    }, 1500);
   };
-
-  useEffect(() => {
-    axios
-      .get("https://18ks6qpp-8000.uks1.devtunnels.ms/menu")
-      .then((res) => setMenuItems(res.data))
-      .catch((error) => {
-        console.log("Error fetching menu items:", error);
-      });
-  }, []);
 
   useEffect(() => {
     if (isUserTurn) {
