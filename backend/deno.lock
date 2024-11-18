@@ -13,6 +13,7 @@
     "jsr:@std/media-types@1": "1.1.0",
     "jsr:@std/path@1": "1.0.8",
     "npm:@types/node@*": "22.5.4",
+    "npm:axios@*": "1.7.7",
     "npm:path-to-regexp@6.2.1": "6.2.1"
   },
   "jsr": {
@@ -65,8 +66,51 @@
         "undici-types"
       ]
     },
+    "asynckit@0.4.0": {
+      "integrity": "sha512-Oei9OH4tRh0YqU3GxhX79dM/mwVgvbZJaSNaRk+bshkj0S5cfHcgYakreBjrHwatXKbz+IoIdYLxrKim2MjW0Q=="
+    },
+    "axios@1.7.7": {
+      "integrity": "sha512-S4kL7XrjgBmvdGut0sN3yJxqYzrDOnivkBiN0OFs6hLiUam3UPvswUo0kqGyhqUZGEOytHyumEdXsAkgCOUf3Q==",
+      "dependencies": [
+        "follow-redirects",
+        "form-data",
+        "proxy-from-env"
+      ]
+    },
+    "combined-stream@1.0.8": {
+      "integrity": "sha512-FQN4MRfuJeHf7cBbBMJFXhKSDq+2kAArBlmRBvcvFE5BB1HZKXtSFASDhdlz9zOYwxh8lDdnvmMOe/+5cdoEdg==",
+      "dependencies": [
+        "delayed-stream"
+      ]
+    },
+    "delayed-stream@1.0.0": {
+      "integrity": "sha512-ZySD7Nf91aLB0RxL4KGrKHBXl7Eds1DAmEdcoVawXnLD7SDhpNgtuII2aAkg7a7QS41jxPSZ17p4VdGnMHk3MQ=="
+    },
+    "follow-redirects@1.15.9": {
+      "integrity": "sha512-gew4GsXizNgdoRyqmyfMHyAmXsZDk6mHkSxZFCzW9gwlbtOW44CDtYavM+y+72qD/Vq2l550kMF52DT8fOLJqQ=="
+    },
+    "form-data@4.0.1": {
+      "integrity": "sha512-tzN8e4TX8+kkxGPK8D5u0FNmjPUjw3lwC9lSLxxoB/+GtsJG91CO8bSWy73APlgAZzZbXEYZJuxjkHH2w+Ezhw==",
+      "dependencies": [
+        "asynckit",
+        "combined-stream",
+        "mime-types"
+      ]
+    },
+    "mime-db@1.52.0": {
+      "integrity": "sha512-sPU4uV7dYlvtWJxwwxHD0PuihVNiE7TyAbQ5SWxDCB9mUYvOgroQOwYQQOKPJ8CIbE+1ETVlOoK1UC2nU3gYvg=="
+    },
+    "mime-types@2.1.35": {
+      "integrity": "sha512-ZDY+bPm5zTTF+YpCrAU9nK0UgICYPT0QtT1NZWFv4s++TNkcgVaT0g6+4R2uI4MjQjzysHB1zxuWL50hzaeXiw==",
+      "dependencies": [
+        "mime-db"
+      ]
+    },
     "path-to-regexp@6.2.1": {
       "integrity": "sha512-JLyh7xT1kizaEvcaXOQwOc2/Yhw6KZOvPf1S8401UyLk86CU79LN3vl7ztXGm/pZ+YjoyAJ4rxmHwbkBXJX+yw=="
+    },
+    "proxy-from-env@1.1.0": {
+      "integrity": "sha512-D+zkORCbA9f1tdWRK0RaCR3GPv50cMxcrz4X8k5LTSUD1Dkw47mKJEZQNunItRTkWwgtaUSo1RVFRIG9ZXiFYg=="
     },
     "undici-types@6.19.8": {
       "integrity": "sha512-ve2KP6f/JnbPBFyobGHuerC9g1FYGn/F8n1LWTwNxCEzd6IfqTwUQcNXgEtmmQ6DlRrC1hrSrBnCZPokRrDHjw=="
@@ -77,6 +121,18 @@
     "https://deno.land/x/oak/mod.ts": "https://deno.land/x/oak@v17.1.3/mod.ts"
   },
   "remote": {
+    "https://cdn.skypack.dev/-/axios@v1.7.7-IEbgWXYLBmdwv8d21qgW/dist=es2019,mode=imports/optimized/axios.js": "2be719f069f3a1c864804b5a377518f54edccfd19ff319290ca4614eed596ddc",
+    "https://cdn.skypack.dev/-/axios@v1.7.7-IEbgWXYLBmdwv8d21qgW/dist=es2019,mode=imports/optimized/axios/lib/adapters/http.js": "c4c738b042d3cb04c1c809da222e07cfcfee421f949b8beac53a823659c6d0da",
+    "https://cdn.skypack.dev/-/axios@v1.7.7-IEbgWXYLBmdwv8d21qgW/dist=es2019,mode=imports/optimized/axios/unsafe/axios.js": "d65ee988410af6ae6c6bfc92a512a11df4a102a7356aad50119197f56e28ceeb",
+    "https://cdn.skypack.dev/-/axios@v1.7.7-IEbgWXYLBmdwv8d21qgW/dist=es2019,mode=imports/optimized/axios/unsafe/core/buildFullPath.js": "860edf269ea59de15121ca054aae0be6d323d54fabe4a6ab06b64983d8997f4b",
+    "https://cdn.skypack.dev/-/axios@v1.7.7-IEbgWXYLBmdwv8d21qgW/dist=es2019,mode=imports/optimized/axios/unsafe/core/settle.js": "e3673459848ecbce4ccfac8ceb6e14d0a9cd5d2ab652cb6197fefced584ef23a",
+    "https://cdn.skypack.dev/-/axios@v1.7.7-IEbgWXYLBmdwv8d21qgW/dist=es2019,mode=imports/optimized/axios/unsafe/helpers/combineURLs.js": "a9c8e23319c41428ea902926ec9e2bc2c9b1ce0ddf0689fcd8b4323d652fff5a",
+    "https://cdn.skypack.dev/-/axios@v1.7.7-IEbgWXYLBmdwv8d21qgW/dist=es2019,mode=imports/optimized/axios/unsafe/helpers/isAbsoluteURL.js": "55fe29d03f51b2afee61d15026932f0c0e6436852b638561298e4b2d5111b6a6",
+    "https://cdn.skypack.dev/-/axios@v1.7.7-IEbgWXYLBmdwv8d21qgW/dist=es2019,mode=imports/optimized/common/AxiosError-f6b69dd1.js": "a2c013e61bb8bf2a80e1eb81c9d07be640dab949635587cfb38339278b12ac88",
+    "https://cdn.skypack.dev/-/axios@v1.7.7-IEbgWXYLBmdwv8d21qgW/dist=es2019,mode=imports/optimized/common/buildURL-eeecd694.js": "67d4f6207fd4a604236be6bd8577a6c06365e8a3d305925ed393f27aab430e13",
+    "https://cdn.skypack.dev/-/axios@v1.7.7-IEbgWXYLBmdwv8d21qgW/dist=es2019,mode=imports/optimized/common/utils-c8f2b870.js": "b138e3df5282a1b39d7b7007becccf05d9fae66dee039c02741e89b808c55775",
+    "https://cdn.skypack.dev/-/axios@v1.7.7-IEbgWXYLBmdwv8d21qgW/dist=es2019,mode=imports/optimized/common/xhr-13e31120.js": "6981380d0092cf9ff8248076482355b8e0709736eb53192d28d5469b3ddeffb9",
+    "https://cdn.skypack.dev/axios": "408b6114f2371037717a6b1d39371c54a27fe6c81be83025dd7f31c7fed13424",
     "https://deno.land/std@0.188.0/_util/asserts.ts": "178dfc49a464aee693a7e285567b3d0b555dc805ff490505a8aae34f9cfb1462",
     "https://deno.land/std@0.188.0/_util/os.ts": "d932f56d41e4f6a6093d56044e29ce637f8dcc43c5a90af43504a889cf1775e3",
     "https://deno.land/std@0.188.0/async/deferred.ts": "42790112f36a75a57db4a96d33974a936deb7b04d25c6084a9fa8a49f135def8",

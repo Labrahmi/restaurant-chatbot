@@ -1,8 +1,13 @@
 import { Context } from "@deps";
+import { processMessage } from "../services/nlpService.ts";
 
-function responseHandler(ctx: Context, response: any) {
+const ConversationHistory: { role: string; content: string; }[] = [];
+
+async function responseHandler(ctx: Context, response: string) {
   ctx.response.status = 200;
-  ctx.response.body = { message: response };
+  const responseMessage = await processMessage(response, ConversationHistory);
+  console.log("Response message:", responseMessage);
+  ctx.response.body = { message: responseMessage };
 }
 
 export const handleChat = async (ctx: Context) => {
@@ -10,7 +15,7 @@ export const handleChat = async (ctx: Context) => {
     // get the request body:
     const body = await ctx.request.body().value;
     const message = body.message;
-    responseHandler(ctx, message);
+    await responseHandler(ctx, message);
   } catch (error) {
     console.error("Error handling chat request:", error);
     ctx.response.status = 500;
