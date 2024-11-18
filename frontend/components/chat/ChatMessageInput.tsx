@@ -107,7 +107,7 @@ function ChatMessageInput({ setMessages }: { setMessages: Function }) {
           value={inputValue}
           onChange={(e) => setInputValue(e.target.value)}
           placeholder="Type a message..."
-          className="bg-transparent p-2 w-full outline-none"
+          className="bg-transparent p-3 w-full outline-none"
           type="text"
           ref={inputRef}
         />
