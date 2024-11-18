@@ -6,6 +6,7 @@ import {
   MessageSquareOff,
   X,
   EllipsisVertical,
+  Bot,
 } from "lucide-react";
 
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
@@ -58,9 +59,8 @@ function ChatBotInfo({
           </PopoverContent>
         </Popover>
       </div>
-      <Avatar className="size-32">
-        <AvatarImage src="/botto.png" />
-        <AvatarFallback>CN</AvatarFallback>
+      <Avatar className="size-32 flex justify-center items-center p-2">
+        <Bot className="size-32 stroke-zinc-300" />
       </Avatar>
       <div className="flex flex-col justify-center items-center text-center">
         <h1 className="font-light text-2xl text-zinc-300">Restaurant bot</h1>

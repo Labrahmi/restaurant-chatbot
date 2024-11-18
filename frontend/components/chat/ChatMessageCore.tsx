@@ -3,6 +3,7 @@
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Message } from "@/lib/types";
 import clsx from "clsx";
+import { Bot } from "lucide-react";
 
 function ChatMessageCore({
   messages,
@@ -23,20 +24,23 @@ function ChatMessageCore({
           })}
         >
           <div
-            className={clsx("flex gap-2 items-center justify-center", {
+            className={clsx("flex items-center justify-center", {
               "flex-row-reverse": message.user.id === "0",
             })}
           >
-            <Avatar className="size-8">
-              <AvatarImage
-                src={clsx(
-                  message.user.id === "0"
-                    ? "/botto.png"
-                    : "https://github.com/shadcn.png"
-                )}
-              />
-              <AvatarFallback>CN</AvatarFallback>
-            </Avatar>
+            {message.user.id === "0" ? (
+              <Avatar className="size-12 flex justify-center items-center p-2">
+                <Bot className="size-12 stroke-zinc-300" />
+              </Avatar>
+            ) : (
+              <Avatar className="size-12 flex justify-center items-center p-2 text-zinc-500">
+                <AvatarImage
+                  src={message.user.avatar}
+                  alt={message.user.name}
+                />
+                <AvatarFallback>U</AvatarFallback>
+              </Avatar>
+            )}
             <div
               className={clsx(
                 "p-2 rounded-lg border border-zinc-800 break-all whitespace-pre-wrap",
