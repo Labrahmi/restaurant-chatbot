@@ -1,9 +1,13 @@
-import { Application, oakCors } from "@deps"
-import { router } from "./routes/routes.ts"
+import { Application, oakCors } from "@deps";
+import { router } from "./routes/routes.ts";
 
 // Create your Deno application
 const app = new Application();
 app.use(oakCors());
+
+// Add prefix to all routes
+router.prefix("/api");
+
 app.use(router.routes()); // Use the router
 app.use(router.allowedMethods());
 
