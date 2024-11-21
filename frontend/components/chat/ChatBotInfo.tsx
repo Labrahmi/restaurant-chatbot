@@ -33,7 +33,7 @@ function ChatBotInfo({
   setMessages: Function;
 }) {
   return (
-    <div className="w-full flex gap-2 flex-col items-center justify-center select-none border-b border-b-zinc-800">
+    <div className="w-full flex p-4 gap-2 flex-col items-center justify-center select-none border-b border-b-zinc-800">
       <div className="w-full flex justify-end p-2 py-4">
         <Popover>
           <PopoverTrigger className="flex gap-1 items-center text-zinc-500 text-sm font-light">
@@ -59,17 +59,16 @@ function ChatBotInfo({
           </PopoverContent>
         </Popover>
       </div>
-      <Avatar className="size-32 flex justify-center items-center p-2">
-        <Bot className="size-32 stroke-zinc-300" />
+      <Avatar className="size-20 flex justify-center items-center p-2">
+        <Bot className="size-16 stroke-zinc-300" />
       </Avatar>
       <div className="flex flex-col justify-center items-center text-center">
-        <h1 className="font-light text-2xl text-zinc-300">Restaurant bot</h1>
+        <h1 className="font-light text-xl text-zinc-300">Restaurant bot</h1>
         <p className="text-sm font-light text-zinc-500">
           A7sen bot, makay3rf ydir walo, wlkn bot
         </p>
       </div>
-
-      <div className="text-sm text-zinc-500 self-start p-4">
+      <div className="text-sm text-zinc-500 self-start hidden">
         <code>Commands:</code>
         <ul className="list-disc flex flex-col gap-1 list-inside text-xs select-text selection:text-black selection:bg-zinc-600">
           <code>/hello</code>

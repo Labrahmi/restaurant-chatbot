@@ -43,7 +43,7 @@ function ChatMessageCore({
             )}
             <div
               className={clsx(
-                "p-2 rounded-lg border border-zinc-800 break-all whitespace-pre-wrap",
+                "p-2 2xl:max-w-[28rem] rounded-lg border border-zinc-800 break-all whitespace-pre-wrap",
                 {
                   "bg-zinc-800": message.user.id === "0",
                   "animate-pulse w-64 h-full text-center":
